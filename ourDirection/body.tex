@@ -111,10 +111,12 @@ To test the models, we chose 100 test questions and answers from the Hansard dat
 \section{Discussion}
 In this section the results of the experiments are presented. First, we evaluate the generated responses from the two models: HRED and GRU-based model. Table \ref{tab:evaluation} shows the evaluation results from the four embedding-based metrics. The evaluation metrics suggests that the HRED model fails to generate coherent response. We observed that the HRED model has difficulty learning longer sequences of dialogue, and can only generate limited word sequences. The GRU-base model generates better results with more comprehensible sentences. 
 
-\begin{table}
-\begin{tabular*}{\textwidth}{llll|lll}
-% \centering
-% \caption{Dialogue response evaluation - Cosine Similarity (CS)}
+\begin{table*}
+\centering
+\caption{Dialogue response evaluation - Cosine Similarity (CS)}
+
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llll|lll}
 
 \toprule
 & \multicolumn{3}{l}{GRU-based} & \multicolumn{3}{l}{HRED} \\
@@ -125,9 +127,11 @@ Skip Though CS  &   0.307    &   0.813   &    0.702    &   0.104     &   0.291  
 Vector Extrema CS   &   0.217    &   0.495   &    0.352    &    0.105    &    0.429    &    0.274    \\
 Greedy Matching  &   0.545    &   0.761   &    0.674    &    0.435    &     0.667   &    0.589    \\
 \bottomrule
-% \label{tab:evaluation}
-\end{tabular*}
-\end{table}
+
+\end{tabular}
+}
+\label{tab:evaluation}
+\end{table*}
 
 
 

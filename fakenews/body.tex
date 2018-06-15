@@ -15,13 +15,10 @@ Our primary contribution is to analyze various fake news datasets and report sta
 
 
 \section{Evaluating Truthfulness}
+\vspace{-1em}
 In this work, we focus on presenting various available fake news datasets and analyze the performance of state-of-the-art classification techniques.   
 
 \citet{Kim14convolutionalneural} proposed an effective convolutional neural network for the sentence classification. The CNN architecture is inspired by high-dimensional computer vision classification problem. We experimented with various variants of the model (CNN-Rand, CNN-static, CNN-non-static), and finally chose the CNN-static, which has pre-trained vectors from \texttt{word2vec} \footnote{\url{https://code.google.com/p/word2vec/}} word embedding, to be the best suiting for our classification task.
-
-The bidirectional GRU \cite{DBLP:journals/corr/BahdanauCB14},  are composed of two independent RNNs together, in this case Gated Recurrent Unit (GRU) \cite{ChoMGBSB14}. The bidirectional GRU contains a forward GRU $\overrightarrow{f} $ which reads the sentence as a forward sequence, and backward GRU $\overleftarrow{f}$ which read the sequence in reverse. This property of bidirectional GRU model allows the model to encode the contextual information of the text.
-
-In GRU-2 model \cite{Ma2016DetectingRF}, there are two GRU hidden layers and embedding layer, that is able to capture higher-level features of the text.  We also explore the performance of hierarchical attention network \cite{Yang2016HierarchicalAN} for the fake news classification (Figure \ref{fig:HAN}). The model has four main components, word sequence encoder, a word-level attention layer, a sentence encoder and a sentence-level attention layer. Lastly, we examine the performance of the fastText \cite{DBLP:journals/corr/JoulinGBM16}, a simple and highly efficient approach built on top of a linear model with rank constraint and optimized loss approximation.  
 
 \begin{figure}[!ht]
 \centering
@@ -29,6 +26,12 @@ In GRU-2 model \cite{Ma2016DetectingRF}, there are two GRU hidden layers and emb
 \includegraphics[scale=.5]{img/HierachicalAttention}
 \label{fig:HAN}
 \end{figure}
+
+The bidirectional GRU \cite{DBLP:journals/corr/BahdanauCB14},  are composed of two independent RNNs together, in this case Gated Recurrent Unit (GRU) \cite{ChoMGBSB14}. The bidirectional GRU contains a forward GRU $\overrightarrow{f} $ which reads the sentence as a forward sequence, and backward GRU $\overleftarrow{f}$ which read the sequence in reverse. This property of bidirectional GRU model allows the model to encode the contextual information of the text.
+
+In GRU-2 model \cite{Ma2016DetectingRF}, there are two GRU hidden layers and embedding layer, that is able to capture higher-level features of the text.  We also explore the performance of hierarchical attention network \cite{Yang2016HierarchicalAN} for the fake news classification (Figure \ref{fig:HAN}). The model has four main components, word sequence encoder, a word-level attention layer, a sentence encoder and a sentence-level attention layer. Lastly, we examine the performance of the fastText \cite{DBLP:journals/corr/JoulinGBM16}, a simple and highly efficient approach built on top of a linear model with rank constraint and optimized loss approximation.  
+
+
 
 \section{Experiments}
 

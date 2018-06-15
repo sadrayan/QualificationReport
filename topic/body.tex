@@ -21,7 +21,6 @@ The objective of this study is to answer the following research questions:
 \item Analyze and evaluate the correlation of events extracted from topic modeling to the real world events
 \end{itemize}
 
-The rest of this paper is organized as follows. In section two, the background and the motivation behind this study is discussed. A summary of relevant works in the literature is presented in section 3. Section 4 describes the details of the methodological approach to analyze the document corpus and apply topic modeling. The experiments and results are described in section 5, followed by the case study in section 6. 
 
 \subsection{Detecting Event Magnitude}
 In a recent work, \cite{Agrawal2016DetectingTM} introduced an effective model to detect events in large  news corpus. The objective of the approach is to analyze the magnitude of a given event from the text documents. The proposed model is designed to efficiently track the magnitude of the target event, which is defined previously. An event may be defined as 'violence', 'disease' or 'politics', which are defined by the collection of seed words. These seed words are designed to capture the context of related words to the general topic of the event. The goal of model is to evaluate the document and output the magnitude of the event based on the similarity of the document context and the seed words defining the event. The magnitude of the event is defined by the assigning an \textit{EventScore} to the document based on the measured similarity of the document and the seed words.  
@@ -37,10 +36,11 @@ The $Sim (w_i, y_j)$ in equation \ref{eq:simEQ} can be calculated with three dif
 \begin{equation}\label{eq:EventScore}
 EventScore (d_k, E) =  \frac{1}{\mid n\mid}    \sum_{i=1}^{n} Sim(w_i, E)
 \end{equation}
-
-\begin{equation}\label{eq:EventScore}
+\vspace{-1em}
+\begin{equation}\label{eq:EventScore1}
 EventScore (t_s, E) =  \frac{1}{\mid D\mid}    \sum EventScore(d_k, E)
 \end{equation}
+
 The event score of an article $d_k$ with $n$ token is computed for specific window of time. To arrive at the event score for a specific window of time $t_s$, $EventScore(d_k, E)$ for all documents in $t_s$. The model is validated by manually assigning an event magnitude score to set of training documents, and evaluate the expert labels correlation with the $EventScore (d_k, E)$ through Pearson's correlation measure. The preliminary evaluations on limited set of news article from the Expandable Open-Source (EOS) collection shows strong correlation between the expert and $EventScore.$ However, the work is limited by the choosing of seed words to define the target event and is not sensitive to range of topics in the news media documents. The approach is based on the assumption that the target events can be observed in the corpus, with limited set of defining seed words. In this works, we take a different view on the event, and define the events on broader level in the topic space. More on this in next section. 
 
 \subsection{Exploring the Political Agenda through Dynamic Topic Modeling}
@@ -287,17 +287,6 @@ It is also interesting to note that LDA online variation based on \cite{NIPS2010
 The performance of the topic models heavily depends on the number of topics provided. Therefore, the key parameter selection decision involved in topic modeling is the choice of the number of topics $k$. To address this, the topics models are evaluated based on the topic coherence measures described in section 4.2. Figure \ref{fig:window_TC_W2V_k_all} and \ref{fig:window_Unify_k_all} shows the best performing number of topics k in the window bins. The topic coherence score is computed to find the best performing number of topics. The topic coherence results from unified coherence framework and TC-W2V is also used to validate the how the two score measurements agree on identifying the highest topic model. 
 
 \subsection{Dynamic Topic learning}
-We use the dynamic topic modeling technique introduced in \cite{Greene2016} and described in section 4.4. After processing the corpus into time windows and applying the pre-processing steps (described in section 5.2), the two layers of NMF are applied on the sliced corpus. The result of the two-layer dynamic topic modeling is first set of time window topic models $M \in \{M_1, ..., M_T\}$, and set of dynamic topics with association to the time windows. 
-Determining on the number of topics is the most important part of any topic modeling. In these set of experiments, we set $k \in \{10, 100\}$ with the increments of 2. This range is used to generate topic models for each time period as well as generating the dynamic model. We use the unify topic coherence measure to decide on the best performing topic number for each period of time (Figure \ref{fig:topk_coherence_tc}).
-
-% GRAPHS GO HEREh
-\begin{figure}[H]
-\centering
-\caption{Dynamic unify top coherence}
-\includegraphics[scale=.7]{img/dynamic_coherence_plot.png}
-\label{fig:topk_coherence_tc}
-\end{figure}
-
 Table \ref{table:dynamictopk} shows the top coherence score base on the unify metrics. Best number of topics are found in the center of the $k \in \{10, 100\}$ range, with 42 being the best performing number of topics. We also noticed that low and high number of topics don't perform well in the coherence measurements. 
 
 \begin{table}[H]
@@ -312,6 +301,19 @@ k  & Unify score \\ \hline
 55 & 0.602       \\ \hline
 \end{tabular}
 \end{table}
+
+We use the dynamic topic modeling technique introduced in \cite{Greene2016} and described in section 4.4. After processing the corpus into time windows and applying the pre-processing steps (described in section 5.2), the two layers of NMF are applied on the sliced corpus. The result of the two-layer dynamic topic modeling is first set of time window topic models $M \in \{M_1, ..., M_T\}$, and set of dynamic topics with association to the time windows. 
+Determining on the number of topics is the most important part of any topic modeling. In these set of experiments, we set $k \in \{10, 100\}$ with the increments of 2. This range is used to generate topic models for each time period as well as generating the dynamic model. We use the unify topic coherence measure to decide on the best performing topic number for each period of time (Figure \ref{fig:topk_coherence_tc}).
+
+% GRAPHS GO HEREh
+\begin{figure}[H]
+\centering
+\caption{Dynamic unify top coherence}
+\includegraphics[scale=.7]{img/dynamic_coherence_plot.png}
+\label{fig:topk_coherence_tc}
+\end{figure}
+
+
 
 
 We can also manually inspect the quality of the dynamic topics found in out news article corpus. Since the corpus was curated to focus on the Middle East, we can expect that the topics found center around the issues in the region. Exploring subset of the topic $k = 42$ (Table \ref{table:dynamictopicWords}) shows that the topics refer to set of ongoing events throughout the whole entire period of 2012-2017. 
