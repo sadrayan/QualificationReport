@@ -1,0 +1,67 @@
+\documentclass[a4paper,12pt,twoside]{report}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
+
+% Custom
+\usepackage{booktabs} % For formal tables
+
+\usepackage{graphicx}
+\usepackage{tabularx}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{tabularx}
+
+\usepackage{url}
+\usepackage{float}
+% \usepackage[round]{natbib}
+\usepackage[numbers]{natbib}
+\usepackage[titletoc,title]{appendix}
+% Custom
+
+\include{thesis.preamble}
+
+
+\begin{document}
+
+\title{\LARGE {\bf Overview of topic modeling, text generation and fake news detection}\\
+ \vspace*{6mm}
+}
+
+\author{Sadra Abrishamkar}
+\submitdate{June 2018}
+
+\normallinespacing
+\maketitle
+
+\preface
+% \input{abstract/abstract}
+\input{acknowledgements/acknowledgements}
+% \input{dedication/dedication}
+% \input{quotes/quotes}
+
+\body
+\input{introduction/introduction}
+\input{ourDirection/body}
+\input{fakenews/body}
+
+% topic analysis
+\input{topic/body}
+% \input{topic/introduction}
+
+% body of thesis comes here
+
+\input{conclusion/conclusion}
+
+% \appendix
+% appendices come here
+\input{appendix/body}
+
+
+\addcontentsline{toc}{chapter}{Bibliography}
+% \bibliographystyle{alpha}
+\bibliographystyle{plainnat}
+% \bibliography{bibliography/bibliography}
+\bibliography{bibliography}
+
+\end{document}
